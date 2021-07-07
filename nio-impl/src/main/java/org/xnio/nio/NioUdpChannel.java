@@ -203,7 +203,7 @@ class NioUdpChannel extends AbstractNioChannel<NioUdpChannel> implements Multica
     }
 
     private void cancelKeys() {
-        try { handle.cancelKey(false); } catch (Throwable ignored) {}
+        try { handle.cancelKey(true); } catch (Throwable ignored) {}
     }
 
     public void suspendReads() {

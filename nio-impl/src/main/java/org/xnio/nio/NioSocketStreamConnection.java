@@ -131,7 +131,7 @@ final class NioSocketStreamConnection extends AbstractNioStreamConnection {
 
     protected void closeAction() throws IOException {
         try {
-            conduit.cancelKey(false);
+            conduit.cancelKey(true);
             conduit.getSocketChannel().close();
         } catch (ClosedChannelException ignored) {
         } finally {
