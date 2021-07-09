@@ -775,10 +775,12 @@ final class WorkerThread extends XnioIoThread implements XnioExecutor {
                 key.cancel();
                 if (block) {
                     final SelectNowTask task = new SelectNowTask();
+                    log.tracef("-------------- Adding="+task);
                     queueTask(task);
                     selector.wakeup();
                     // block until the selector is actually deregistered
                     task.doWait();
+                    log.tracef("-------------- DONE="+task);
                 } else {
                     selector.wakeup();
                 }
@@ -910,6 +912,7 @@ final class WorkerThread extends XnioIoThread implements XnioExecutor {
             } catch (IOException ignored) {
             }
             done = true;
+            log.tracef("-------------- unpack="+this);
             unpark(thread);
         }
     }
